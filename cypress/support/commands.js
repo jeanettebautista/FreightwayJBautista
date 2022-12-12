@@ -76,16 +76,30 @@ Cypress.Commands.add("searchAddress", (address) => {
     .type("value{downarrow}{enter}");
 })
 
-// mon-fri standard delivery is present
-Cypress.Commands.add("monToFriZone", () => {
-    return cy.get("#rowServicesOfferedMonToFriZone").should("be.visible");
+// mon-fri standard delivery is available
+Cypress.Commands.add("weekdayZone", () => {
+    cy.get("#rowServicesOfferedMonToFriZone").should("be.visible");
+    return cy.get('.service-available.yes').should('be.visible');
+})
+
+// mon-fri standard delivery is not available
+Cypress.Commands.add("notWeekdayZone", () => {
+    cy.get("#rowServicesOfferedMonToFriZone").should("be.visible");
+    return cy.get('.service-available.no').should('be.visible');
 })
 
 // saturday delivery is present
 Cypress.Commands.add("saturdayZone", () => {
-  cy.get("#rowServicesOfferedSaturdayZone").should("be.visible");
+  cy.get("#rowServicesOfferedSaturdayZone").should('be.visible');
+  return cy.get('.service-available.yes').should('be.visible');
 })
 
-Cypress.Commands.add("serviceArea", () => {
-  cy.get("#rowServiceArea").should("be.visible");
+// saturday delivery is not spresent
+Cypress.Commands.add("notSaturdayZone", () => {
+    cy.get("#rowServicesOfferedSaturdayZone").should('be.visible');
+    cy.get('.service-available.no').should('be.visible');
+})
+
+Cypress.Commands.add("serviceArea", (serviceCondition) => {
+  return cy.get("#rowServiceArea").should("contain", serviceCondition);
 })
