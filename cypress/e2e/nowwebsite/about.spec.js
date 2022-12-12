@@ -41,34 +41,4 @@ describe("About Page Tests", () => {
 
     cy.footerValidation();
   });
-
-
-it.skip("Original - About page - logo and cover banner", () => {
-  // logo visiblity
-  cy.checkLogo();
-  cy.checkCoverBanner();
-  // Our Partner network 
-  cy.get('.wp-block-group__inner-container').should("be.visible", "Our Partner network");
-
-  //Post Haste
-  cy.get('.wp-block-image').eq(1).should("be.visible");
-
-  // // Post Haster
-  cy.get('.wp-block-image').eq(1).should("be.visible");
-  cy.contains("Specialists in the delivery of time sensitive documents and parcels.")
-  // // NZ Couriers
-  cy.get('.wp-block-image').eq(2).should("be.visible");
-  // // Castle Parcel
-  cy.get('.wp-block-image').eq(3).should("be.visible");
-  // // Sub 60
-  cy.get('.wp-block-image').eq(4).should("be.visible");
-  // // Security express
-  cy.get('.wp-block-image').eq(5).should("be.visible");
-  //cy.contains('test.');
-  // // Kiwi express
-  cy.get('.wp-block-image').eq(6).should("be.visible");
-  cy.contains('Offering 15 minute, 30 minute and 1 hour deliveries.');
-
-  cy.footerValidation();
-});
 });

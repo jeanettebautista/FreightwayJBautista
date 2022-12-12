@@ -5,75 +5,33 @@ describe("Address Checker Page Tests", () => {
     cy.visit("/addresschecker/");
   });
 
-  // Address Checker Page Tests
-  it("Address Checker page - logo, cover banner, and footer", () => {
-    // logo visiblity
+  it("Address Checker - business delivery", () => {
     cy.checkLogo();
     cy.checkCoverBanner();
-    cy.footerValidation();
-  });
-
-  it("Address Checker - business delivery", () => {
-    // search for address
-    cy.get("#txt-address-auto-complete")
-      .type("32 Botha Road, Penrose,");
-
-    cy.wait(2000);
-
-    // same day delivery is present
-    cy.get("#rowServicesOfferedSameDayZone").should("be.visible");
-
-    // mon-fri standard delivery is present
-    cy.get("#rowServicesOfferedMonToFriZone").should("be.visible");
-
-    // saturday delivery is present
-    cy.get("#rowServicesOfferedSaturdayZone").should("be.visible");
-
-    // business delivery is present
-    cy.get("#rowServiceArea").should("be.visible");
+    cy.searchAddress('32 Botha Road, Penrose,');
+    cy.monToFriZone();
+    cy.saturdayZone();
+    cy.serviceArea();
     cy.footerValidation();
   });
 
   it("Address Checker - rural delivery", () => {
-    // search for address
-    cy.get("#txt-address-auto-complete")
-      .type("12 wades road, whitford,")
-      .wait(2500)
-      .type("value{downarrow}{enter}");
-
-    cy.wait(2000);
-
-    // mon-fri standard delivery is present
-    cy.get("#rowServicesOfferedMonToFriZone").should("be.visible");
-
-    // saturday delivery is present
-    cy.get("#rowServicesOfferedSaturdayZone").should("be.visible");
-
-    // business delivery is present
-    cy.get("#rowServiceArea").should("be.visible");
+    cy.checkLogo();
+    cy.checkCoverBanner();
+    cy.searchAddress('12 wades road, whitford,');
+    cy.monToFriZone();
+    cy.saturdayZone();
+    cy.serviceArea();
     cy.footerValidation();
   });
 
   it("Address Checker - residential delivery", () => {
-    // search for address
-    cy.get("#txt-address-auto-complete")
-      .type("38 glenmore road, sunnyhills,")
-      .wait(2500)
-      .type("value{downarrow}{enter}");
-
-    cy.wait(2000);
-
-    // same day delivery is present
-    cy.get("#rowServicesOfferedSameDayZone").should("be.visible");
-
-    // mon-fri standard delivery is present
-    cy.get("#rowServicesOfferedMonToFriZone").should("be.visible");
-
-    // saturday delivery is present
-    cy.get("#rowServicesOfferedSaturdayZone").should("be.visible");
-
-    // residential delivery is present
-    cy.get("#rowServiceArea").should("be.visible");
+    cy.checkLogo();
+    cy.checkCoverBanner();
+    cy.searchAddress('38 glenmore road, sunnyhills');
+    cy.monToFriZone();
+    cy.saturdayZone();
+    cy.serviceArea();
     cy.footerValidation();
   });
 });

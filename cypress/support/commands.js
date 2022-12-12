@@ -69,3 +69,23 @@ Cypress.Commands.add("checkCoverBanner", () => {
 Cypress.Commands.add("checkLogo", () => {
     cy.get('.mdc-top-app-bar__title').should("be.visible");
 })
+
+Cypress.Commands.add("searchAddress", (address) => {
+    return cy.get("#txt-address-auto-complete").type(address)
+    .wait(2500)
+    .type("value{downarrow}{enter}");
+})
+
+// mon-fri standard delivery is present
+Cypress.Commands.add("monToFriZone", () => {
+    return cy.get("#rowServicesOfferedMonToFriZone").should("be.visible");
+})
+
+// saturday delivery is present
+Cypress.Commands.add("saturdayZone", () => {
+  cy.get("#rowServicesOfferedSaturdayZone").should("be.visible");
+})
+
+Cypress.Commands.add("serviceArea", () => {
+  cy.get("#rowServiceArea").should("be.visible");
+})

@@ -6,87 +6,43 @@ describe("Contact Page Tests", () => {
   });
 
   // Contact Page Tests
-  it.only("Contact page - logo and banner", () => {
+  it("Contact page - logo and banner", () => {
     cy.checkLogo();
 
   // REQUEST A CALLBACK
     // Application for credit - click
     //Please fill out the form
+    //Fullname
     cy.get('[name="input_1"]').type("FIS QA Team");
+    //Company Name
+    cy.get('#input_18_16').type("Freightways Information Services")
+    //Address
+    cy.get('#input_18_18').type("32 Botha Road");
+    //City
+    cy.get('#input_18_20').type("Auckland");
+    //mobile
+    cy.get('#input_18_13').type("0224266470");
+    //email
+    cy.get('#input_18_14').type("fis-automationtesting-admin@freightways.co.nz");
+    //Current Supplier
+    cy.get('#input_18_21').type("This is FIS automated test generated call back request");
+   
+    cy.get('#input_18_23').type("FIS automated test");
+    //How did you hear about NOW
+    cy.get('#input_18_24').select('Other');
+    //Specific Requirements
+    cy.get('#input_18_6').type("FIS automated test");
 
-    cy.get('[data-form-type="company,company_name"]').type("Freightways Information Services");
+    cy.get('#gform_submit_button_18').click();
 
-    cy.get('[data-form-type="address,extra"]').type("32 Botha Road");
 
-    cy.get('[data-form-type="address,city"]').type("Auckland");
+    //captcha workaround should be added as extra step
 
-    cy.get('[data-form-type="phone,mobile"]').type("0224266470");
-
-    cy.get('[data-form-type="email"]').type(
-      "fis-automationtesting-admin@freightways.co.nz"
-    );
-
-    cy.get('[data-form-type="other"]').eq(2).type(
-      "This is FIS automated test generated call back request"
-    );
-
-    cy.get('[data-form-type="other"]').eq(3).type(
-      "FIS automated test"
-    );
-
-    cy.get('select').select('Other');
-
-    cy.get('[data-form-type="other"]').eq(4).type(
-      "FIS automated test"
-    );
-
-    cy.get('[type="submit"]').click();
-
-    // Confirmation message
-    cy.get('[class="wp-block-group__inner-container"]')
-      .eq(1)
-      .should("contain", "Thank you, we’ll be in touch shortly");
+    // Confirmation message - to confirm this
+    cy.url().should('be.equal', '/callback-information')
 
     cy.footerValidation();
   });
 });
 
 
-// it("Contact page - REQUEST A CALLBACK", () => {
-//   // Application for credit - click
-
-//   //Please fill out the form
-//   cy.get('[name="input_1"]').type("FIS QA Team");
-
-//   cy.get('[data-form-type="company,company_name"]').type("Freightways Information Services");
-
-//   cy.get('[data-form-type="address,extra"]').type("32 Botha Road");
-
-//   cy.get('[data-form-type="address,city"]').type("Auckland");
-
-//   cy.get('[data-form-type="phone,mobile"]').type("0224266470");
-
-//   cy.get('[data-form-type="email"]').type(
-//     "fis-automationtesting-admin@freightways.co.nz"
-//   );
-
-//   cy.get('[data-form-type="other"]').eq(2).type(
-//     "This is FIS automated test generated call back request"
-//   );
-
-//   cy.get('[data-form-type="other"]').eq(3).type(
-//     "FIS automated test"
-//   );
-
-//   cy.get('select').select('Other');
-
-//   cy.get('[data-form-type="other"]').eq(4).type(
-//     "FIS automated test"
-//   );
-
-//   cy.get('[type="submit"]').click();
-
-//   // Confirmation message
-//   cy.get('[class="wp-block-group__inner-container"]')
-//     .eq(1)
-//     .should("contain", "Thank you, we’ll be in touch shortly");
