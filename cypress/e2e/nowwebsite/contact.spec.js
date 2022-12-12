@@ -1,48 +1,38 @@
 /// <reference types="cypress" />
 
 describe("Contact Page Tests", () => {
-  beforeEach(() => {
-    cy.visit("/contact/");
-  });
+  let data; 
+  before(() => {
+    cy.fixture('contact').then((fdata) => 
+    {
+      data = fdata;
+
+     })
+    })
 
   // Contact Page Tests
-  it("Contact page - logo and banner", () => {
-    cy.checkLogo();
-
-  // REQUEST A CALLBACK
-    // Application for credit - click
-    //Please fill out the form
-    //Fullname
-    cy.get('[name="input_1"]').type("FIS QA Team");
-    //Company Name
-    cy.get('#input_18_16').type("Freightways Information Services")
-    //Address
-    cy.get('#input_18_18').type("32 Botha Road");
-    //City
-    cy.get('#input_18_20').type("Auckland");
-    //mobile
-    cy.get('#input_18_13').type("0224266470");
-    //email
-    cy.get('#input_18_14').type("fis-automationtesting-admin@freightways.co.nz");
-    //Current Supplier
-    cy.get('#input_18_21').type("This is FIS automated test generated call back request");
-   
-    cy.get('#input_18_23').type("FIS automated test");
+  it("Contact page request a callback", () => {
+     cy.visit("/contact/");
+     cy.checkLogo();
+    cy.get('[name="input_1"]').type(data.Fullname);
+    cy.get('#input_18_16').type(data.Companyname);
+    cy.get('#input_18_18').type(data.Address);
+    cy.get('#input_18_20').type(data.City);
+    cy.get('#input_18_13').type(data.Mobile);
+    cy.get('#input_18_14').type(data.Email);
+    cy.get('#input_18_21').type(data.Natureofbusiness);
+    cy.get('#input_18_23').type(data.Currentsupplier);
     //How did you hear about NOW
     cy.get('#input_18_24').select('Other');
-    //Specific Requirements
-    cy.get('#input_18_6').type("FIS automated test");
+    cy.get('#input_18_6').type(data.Specificrequirement);
 
     cy.get('#gform_submit_button_18').click();
-
-
+    
     //captcha workaround should be added as extra step
 
     // Confirmation message - to confirm this
-    cy.url().should('be.equal', '/callback-information')
+    cy.url().should('be.equal', `${Cypress.config("baseUrl")}callback-information`)
 
     cy.footerValidation();
   });
 });
-
-
