@@ -1,0 +1,15 @@
+/backup/
+*.bak
+.DS_Store
+Fre.PublicWebsites.NowCouriers.Database
+/spectre-master
+
+/.vs
+/node_modules/
+cypress/videos/
+cypress/screenshots/
+cypress.local.json
+.idea
+debug.log
+app/web/app/plugins/tracking-search/build.zip
+*.code-workspace

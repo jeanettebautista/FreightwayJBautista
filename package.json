@@ -1,0 +1,14 @@
+{
+  "name": "fre.publicwebsites.nowcouriers",
+  "version": "1.0.0",
+  "description": "How to run the UI integration tests - local\r     Option 1: (via click and run)\r     $ npm install cypress --save-dev\r     $ ./node_modules/.bin/cypress open\r     Select the intended test and run\r     Option 2: (via CLI)\r     $ npm install cypress --save-dev\r     $ ./node_modules/.bin/cypress run\r     This runs all the tests from command line inteface",
+  "main": "index.js",
+  "devDependencies": {
+    "cypress": "^12.0.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
